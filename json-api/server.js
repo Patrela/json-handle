@@ -8,7 +8,14 @@ const port = 3001; // Puedes cambiar el puerto si lo deseas
 
 app.use(express.json());
 app.use(cors()); 
-// Ruta para leer el archivo JSON
+
+/**
+ * For reading the filename json contents
+ * @param {String} fileName Need to include .json as extension. the default path is the API path
+ * @return Bodty response wiht the json contents
+ * @uses http://localhost:3001/read-json/file-name.json
+ * @example http://localhost:3001/read-json/data.json data.json is the default json file for testing the app. It works at port 3001
+ */
 app.get('/read-json/:filename', (req, res) => {
   const { filename } = req.params;
   const filePath = path.join(__dirname, filename);
@@ -23,7 +30,13 @@ app.get('/read-json/:filename', (req, res) => {
   });
 });
 
-// Ruta para escribir en el archivo JSON
+/**
+ * For create / update the filename json contents
+ * @param {String} fileName Need to include .json as extension. the default path is the API path
+ * @return Bodty response wiht the json contents
+ * @uses http://localhost:3001/write-json/file-name.json
+ * @example http://localhost:3001/write-json/data.json its the default json file for testing the app. It works at port 3001
+ */
 app.post('/write-json/:filename', (req, res) => {
   const { filename } = req.params;
   const filePath = path.join(__dirname, filename);
